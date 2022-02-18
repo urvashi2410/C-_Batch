@@ -20,6 +20,7 @@ class pigLatin{
             else{
                 ans2.append("ay");
             }
+            return ans2;
             for(int i = 0; i < s.length(); i++){
                 // Case-1:
                 if(s[i] == 'a' || s[i] == 'e' || s[i] == 'u' || s[i] == 'i' || s[i] == 'o'){
@@ -30,11 +31,7 @@ class pigLatin{
             }
             string ans1 = rem;
             ans1.append("ay");
-            
-            if(ans1 != ""){
-                return ans1;
-            }
-            return ans2;
+            return ans1;
 }
 };
 
