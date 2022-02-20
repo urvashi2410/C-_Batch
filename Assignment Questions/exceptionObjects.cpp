@@ -2,26 +2,26 @@
 using namespace std;
 
 // abstract class
-class out_of_range{
+class Out_of_range{
     public:
         virtual void getException() = 0;
 };
 
-class HoursException : public out_of_range{
+class HoursException : public Out_of_range{
     public:
         void getException(){
             cout << "Hours are negative" << endl;
         }
 };
 
-class MinutesException : public out_of_range{
+class MinutesException : public Out_of_range{
     public:
         void getException(){
             cout << "minutes are less than 0 or greater than 59" << endl;
         }
 };
 
-class SecondsException : public out_of_range{
+class SecondsException : public Out_of_range{
     public:
         void getException(){
             cout << "seconds are less than 0 or greater than 59" << endl;
