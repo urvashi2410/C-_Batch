@@ -3,121 +3,166 @@ using namespace std;
 
 static int count = 0;
 double total = 0;
-int c = 0;
+int i = 0;
+double t = 0;
+int tFishSpecies = 0;
+int mCount = 0;
+int mOffsprings = 0;
+int fOffsprings = 0;
 
-class Fish{
-    private:
-        string species;
-        char gender;
-        double weight;
-    public:
-        Fish(){
-            species = "guppy";
-            gender = 'm';
-            weight = 1.0;
-        }
+class Fish
+{
+private:
+    string species;
+    char gender;
+    double weight;
 
-        Fish(string s, char g, double w){
-            species = s;
-            gender = g;
-            weight = w;
-        }
+public:
+    Fish()
+    {
+        // species = "guppy";
+        // gender = 'm';
+        // weight = 1.0;
+    }
 
-        void setSpecies(string s){
-            species = s;
-        }
-        string getSpcies(){
-            return species;
-        }
+    Fish(string s, char g, double w)
+    {
+        species = s;
+        gender = g;
+        weight = w;
+    }
 
-        void setGender(char g){
-            gender = g;
-        }
-        char getGender(){
-            return gender;
-        }
+    void setSpecies(string s)
+    {
+        species = s;
+    }
+    string getSpcies()
+    {
+        return species;
+    }
 
-        void setWeight(double w){
-            weight = w;
-        }
+    void setGender(char g)
+    {
+        gender = g;
+    }
+    char getGender()
+    {
+        return gender;
+    }
 
-        double getWeight(){
-            return weight;
-        }
+    void setWeight(double w)
+    {
+        weight = w;
+    }
 
-        double feed(){
-            weight += 0.1*weight;
-            return weight;
-        }
+    double getWeight()
+    {
+        return weight;
+    }
 
-        void toString(){
-            cout << "Species name is " << getSpcies() << endl;
-            cout << "Gender is " << getGender() << endl;
-            cout << "Weight of the fish is "<< getWeight() << endl;
-        }
+    double feed()
+    {
+        weight += 0.1 * weight;
+        return weight;
+    }
+
+    void toString()
+    {
+        // cout << "Species name is " << getSpcies() << endl;
+        cout << "Gender is " << getGender() << endl;
+        cout << "Weight of the fish is " << getWeight() << endl;
+    }
 };
 
-class FishTank : public Fish{
-    private:
-        int totalFishes;
-    public:
-        FishTank(){
-            totalFishes = 0;
+Fish f[50];
+class FishTank : public Fish
+{
+private:
+    int totalFishes;
+
+public:
+    FishTank()
+    {
+        totalFishes = 0;
+    }
+
+    void addFish(Fish f)
+    {
+        f.setSpecies("starfish");
+        f.setGender('f');
+        f.setWeight(100);
+        totalFishes++;
+    }
+
+    double feedFish()
+    {
+        for (int j = 0; j <= i; j++)
+        {
+            int w = f[j].getWeight();
+            total += w + (w * 0.1);
         }
+        return total;
+    }
 
-        void addFish(Fish f){
-            f.setSpecies("starfish");
-            f.setGender('f');
-            f.setWeight(100);
-            totalFishes++;
-        }
-
-        double feedFish(){
-            return total;
-        }
-
-        // double feedFish(string species){
-        //     Fish r;
-        //     r.getWeight()
-        // }
-
-        int getTotalFish(){
-            return totalFishes;
-        }
-
-        int singleFishreproduce(){
-            Fish e;
-            int offSprings = 0;
-            if(e.getSpcies() == "guppy" && c == 1){
-                offSprings += 6;
-            }
-            return offSprings;
-        }
-
-        int reproduceFish(){
-            
-        }
-
-        double getArray(double* Arr, int n){
-            for(int i = 0; i < n; i++){
-                // cout << Arr[i] << endl;
-                total = total + Arr[i] + Arr[i]*0.1;
-            }
-            return total;
-        }
-
-        void maleCount(char* gen, int n){
-            int c = 0;
-            for(int i = 0; i < n; i++){
-                if(gen[i] == 'm'){
-                    c++;
-                }
+    double feedFish(string species)
+    {
+        for (int j = 0; j <= i; j++)
+        {
+            int w = f[j].getWeight();
+            if (f[j].getSpcies() == species)
+            {
+                t += w + (w * 0.1);
             }
         }
+        return t;
+    }
 
+    int getTotalFish()
+    {
+        return totalFishes;
+    }
+
+    int getFish(string species)
+    {
+        for (int j = 0; j <= i; j++)
+        {
+            if (f[j].getSpcies() == species)
+            {
+                tFishSpecies++;
+            }
+        }
+        return tFishSpecies;
+    }
+
+    void reproduceFish()
+    {
+        if (mCount > 0)
+        {
+            for (int j = 0; j < i; j++)
+            {
+                // if (f[j].getSpcies() )
+                // {
+                //     mOffsprings += 3;
+                //     fOffsprings += 3;
+                // }
+            }
+        }
+    }
+
+    void maleCount()
+    {
+        for (int j = 0; j <= i; j++)
+        {
+            if (f[j].getGender() == 'm')
+            {
+                mCount++;
+            }
+        }
+    }
 };
 
-int main(){
+int main()
+{
     Fish t;
 
     // cout << t.getGender();
@@ -126,33 +171,35 @@ int main(){
     // t.toString();
 
     FishTank h;
-    int i = 0;
-    h.addFish(t);
+    // h.addFish(t);
     // cout << h.getTotalFish();
     // cout << h.feedFish();
-    double *Arr = new double(1);
-    char *gen = new char(1);
 
     t.setGender('f');
     t.setWeight(8);
     t.setSpecies("starfish");
-    Arr[i++] = t.getWeight();
-    gen[i++] = t.getGender();
-    h.singleFishreproduce();
+    f[i++] = t;
+    // h.singleFishreproduce();
 
-    t.setGender('m');
-    t.setWeight(4);
-    t.setSpecies("fish");
-    Arr[i++] = t.getWeight();
-    gen[i++] = t.getGender();
-    h.singleFishreproduce();
+    Fish T;
+    T.setGender('m');
+    T.setWeight(4);
+    T.setSpecies("fish");
+    f[i++] = T;
+    // h.singleFishreproduce();
 
     // for(int j = 0; j < i; j++){
     //     cout << Arr[j] << endl;
     // }
 
-    h.getArray(Arr, i);
-    cout << h.feedFish();
-    h.maleCount(gen, i);
+    // cout << h.feedFish("fish") << endl;
+    // cout << h.feedFish() << endl;
+    // cout << h.getFish("fish") << endl;
+    h.maleCount();
+    cout << mCount << endl;
+    h.reproduceFish();
+    // cout << i << endl;
+    cout << mOffsprings << endl;
+    cout << fOffsprings << endl;
     return 0;
 }
