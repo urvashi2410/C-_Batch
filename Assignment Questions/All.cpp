@@ -7,8 +7,10 @@ int i = 0;
 double t = 0;
 int tFishSpecies = 0;
 int mCount = 0;
+int fCount = 0;
 int mOffsprings = 0;
 int fOffsprings = 0;
+int j;
 
 class Fish
 {
@@ -75,6 +77,7 @@ public:
 };
 
 Fish f[50];
+
 class FishTank : public Fish
 {
 private:
@@ -136,28 +139,44 @@ public:
 
     void reproduceFish()
     {
-        if (mCount > 0)
+        int tmc = 0;
+        int tfc = 0;
+        for (j = 0; j < i; j++)
         {
-            for (int j = 0; j < i; j++)
+            if (maleCount(f[j].getSpcies()))
             {
-                // if (f[j].getSpcies() )
-                // {
-                //     mOffsprings += 3;
-                //     fOffsprings += 3;
-                // }
+                tmc++;
+            }
+            if (femaleCount(f[j].getSpcies()))
+            {
+                tfc++;
+            }
+            if (tmc <= tfc && tmc != 0)
+            {
+                mOffsprings += 3 * (tfc);
+                fOffsprings += 3 * (tfc);
             }
         }
     }
 
-    void maleCount()
+    bool maleCount(string species)
     {
-        for (int j = 0; j <= i; j++)
+        if (f[j].getGender() == 'm' && f[j].getSpcies() == species)
         {
-            if (f[j].getGender() == 'm')
-            {
-                mCount++;
-            }
+            // mCount++;
+            return true;
         }
+        return false;
+    }
+
+    bool femaleCount(string species)
+    {
+        if (f[j].getGender() == 'f' && f[j].getSpcies() == species)
+        {
+            // fCount++;
+            return true;
+        }
+        return false;
     }
 };
 
@@ -175,17 +194,29 @@ int main()
     // cout << h.getTotalFish();
     // cout << h.feedFish();
 
-    t.setGender('f');
-    t.setWeight(8);
-    t.setSpecies("starfish");
-    f[i++] = t;
+    // t.setGender('f');
+    // t.setWeight(8);
+    // t.setSpecies("starfish");
+    // f[i++] = t;
     // h.singleFishreproduce();
 
     Fish T;
     T.setGender('m');
-    T.setWeight(4);
+    T.setWeight(8);
     T.setSpecies("fish");
     f[i++] = T;
+
+    Fish u;
+    u.setGender('f');
+    u.setWeight(6);
+    u.setSpecies("fish");
+    f[i++] = u;
+
+    // Fish U;
+    // U.setGender('m');
+    // U.setWeight(8);
+    // U.setSpecies("starfish");
+    // f[i++] = U;
     // h.singleFishreproduce();
 
     // for(int j = 0; j < i; j++){
@@ -195,11 +226,16 @@ int main()
     // cout << h.feedFish("fish") << endl;
     // cout << h.feedFish() << endl;
     // cout << h.getFish("fish") << endl;
-    h.maleCount();
-    cout << mCount << endl;
+    // cout <<  << endl;
     h.reproduceFish();
     // cout << i << endl;
+    // cout << tfc << endl;
+    // cout << tmc << endl;
     cout << mOffsprings << endl;
     cout << fOffsprings << endl;
     return 0;
 }
+
+
+// male count > 0 
+// femalegender == malegender = 3,3
