@@ -4,23 +4,54 @@
 #include <cctype>
 using namespace std;
 
-// echo 
+// echo
 class pigLatin
 {
 public:
+    // string nextWord(string S, int i){
+    //     string word = "";
+    //     char l;
+    //     l = S[i];
 
-    string PigLatinSentence(string S){
-        // string newAns;
-        // string A = "";
-        // for(int i = 0; i < S.size(); i++){
-        //     if(S[i] == ' ' || S[i] == ',' || S[i] == '.'){
-        //         string ans = S.substr();
-        //         newAns = convertPigLatin(ans);
-        //         A.append(newAns);
-        //         continue;
-        //     }
-        // }
-        // return A;
+    //     while(l != ' ' && i < S.size()){
+    //         word += l;
+    //         i++;
+
+    //         if(i < S.size()){
+    //             l = S[i];
+    //         }
+    //     }
+    //     return word+l;
+    // }
+
+    string converpiglatinsentence(string str)
+    {
+        string word("");
+        string ans("");
+        for (int i = 0; i <= str.size(); i++)
+        {
+            if (i == str.size())
+            {
+                ans += convertPigLatin(word);
+            }
+            else if (str[i] == ' ')
+            {
+                ans += convertPigLatin(word);
+                word = "";
+                ans += ' ';
+            }
+            else if (!((str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z')))
+            {
+                ans += convertPigLatin(word);
+                word = "";
+                ans += str[i];
+            }
+            else if ((str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z'))
+            {
+                word += str[i];
+            }
+        }
+        return ans;
     }
 
     string convertPigLatin(string s)
@@ -30,6 +61,11 @@ public:
         int n = s.length();
         // return ans2;
         string ans1 = "";
+        if (s == "")
+        {
+            return "";
+        }
+
         if (s[0] == 'a' || s[0] == 'e' || s[0] == 'i' || s[0] == 'o' || s[0] == 'u')
         {
             ans1.append("y" + s);
@@ -46,7 +82,8 @@ public:
         }
         // cout << ans1 << endl;
         int m = ans1.size();
-        if(ans1[0] == 'y' && ans1[m-1] == 'y' && m >= n){
+        if (ans1[0] == 'y' && ans1[m - 1] == 'y' && m > n)
+        {
             return ans1;
         }
         else
@@ -68,6 +105,27 @@ public:
 
         return ans1;
     }
+
+    // string PigLatinSentence(string S){
+    //     int i = 0;
+    //     int len = S.size();
+
+    //     string word = "";
+    //     string pWord = "";
+    //     string pSen = "";
+    //     string w = "";
+    //     char l;
+    //     while(i < len){
+    //         w = nextWord(S, i);
+    //         word = w.substr(0, w.size());
+    //         l = w[w.size() - 1];
+    //         i += word.size() + 1;
+    //         pWord = convertPigLatin(word);
+    //         pSen += pWord + l;
+    //     }
+    //     // cout << pWord << endl;
+    //     return pSen;
+    // }
 };
 
 int main()
@@ -77,6 +135,6 @@ int main()
     pigLatin pig;
     // string ans = pig.convertPigLatin(s);
     // cout << ans;
-    string newAns = pig.PigLatinSentence("The quick brown fox...");
-    cout << newAns  << endl;
+    string newAns = pig.converpiglatinsentence("The quick brown fox...");
+    cout << newAns << endl;
 }
